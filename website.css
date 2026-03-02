@@ -1,0 +1,477 @@
+:root {
+  --bg: #000000;
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.65);
+
+  --green: #34c759; /* iOS green */
+  --greenSoft: rgba(52, 199, 89, 0.15);
+
+  --grayBtn: #1c1c1e; /* iOS dark gray */
+  --grayBorder: rgba(255, 255, 255, 0.08);
+
+  --pill: #1c1c1e;
+  --pillActive: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(
+      900px 650px at 50% 0%,
+      rgba(52, 199, 89, 0.1),
+      transparent 55%
+    ),
+    var(--bg);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+.phone {
+  width: min(420px, 100%);
+  padding: 18px 16px 20px;
+  border-radius: 28px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 4px 14px;
+}
+
+.nav-left {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-right span {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* icon button */
+.iconBtn {
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 900;
+}
+.iconBtn:active {
+  transform: scale(0.98);
+}
+
+.display {
+  display: grid;
+  justify-items: center;
+  padding: 10px 0 8px;
+}
+
+/* --- Progress Ring --- */
+.ringWrap {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: grid;
+  place-items: center;
+}
+
+.ringSvg {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  transform: rotate(-90deg);
+}
+
+.ringBg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 10;
+}
+
+.ringFg {
+  fill: none;
+  stroke: #34c759;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 327; /* JS overrides precisely */
+  stroke-dashoffset: 0;
+  transition:
+    stroke 0.2s ease,
+    stroke-dashoffset 0.2s linear;
+  filter: drop-shadow(0 0 10px rgba(52, 199, 89, 0.22));
+}
+
+.ringContent {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+}
+
+.timeText {
+  font-variant-numeric: tabular-nums;
+  font-size: 74px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.modePill {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.modes {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px 0 18px;
+}
+
+.mode-btn {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--pill);
+  border: 1px solid var(--grayBorder);
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease,
+    color 0.15s ease;
+}
+.mode-btn:hover {
+  transform: translateY(-1px);
+}
+.mode-btn.active {
+  background: var(--pillActive);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 18px 6px;
+}
+
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.12s ease;
+}
+.circle:active {
+  transform: scale(0.98);
+}
+
+.circle-label {
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: -0.2px;
+}
+
+.primary {
+  background:
+    radial-gradient(
+      120px 120px at 30% 30%,
+      rgba(255, 255, 255, 0.14),
+      transparent 60%
+    ),
+    rgba(52, 199, 89, 0.15);
+  border: 2px solid rgba(52, 199, 89, 0.35);
+  color: var(--green);
+}
+
+.secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.bottom {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.session {
+  width: 100%;
+  max-width: 260px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.session-label {
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.session-value {
+  font-weight: 950;
+  font-size: 14px;
+}
+
+/* ===== Settings Sheet ===== */
+.sheetOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+}
+
+.sheet {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14px;
+  width: min(420px, calc(100% - 24px));
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(14, 14, 16, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.7);
+  z-index: 60;
+  padding: 12px 12px 14px;
+  animation: sheetUp 0.18s ease-out;
+}
+
+@keyframes sheetUp {
+  from {
+    transform: translateX(-50%) translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+.sheetHandle {
+  width: 52px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  margin: 0 auto 10px;
+}
+
+.sheetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px 8px;
+}
+
+.sheetTitle {
+  font-weight: 950;
+  letter-spacing: -0.2px;
+}
+
+.sheetBody {
+  display: grid;
+  gap: 10px;
+  padding: 6px 4px 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.row label {
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.row input[type="number"] {
+  width: 90px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.9);
+  outline: none;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.switchRow {
+  justify-content: space-between;
+}
+.switchRow input[type="checkbox"] {
+  width: 44px;
+  height: 26px;
+  accent-color: #34c759;
+}
+
+.sheetSave {
+  margin-top: 4px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(52, 199, 89, 0.35);
+  background: rgba(52, 199, 89, 0.14);
+  color: #34c759;
+  font-weight: 950;
+  cursor: pointer;
+}
+.sheetSave:active {
+  transform: scale(0.99);
+}
+
+/* ===== Haptics feel (buzz + glow) ===== */
+@keyframes buzz {
+  0% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-2px);
+  }
+  30% {
+    transform: translateX(2px);
+  }
+  45% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.phone.buzz {
+  animation: buzz 0.35s ease-in-out;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(52, 199, 89, 0);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(52, 199, 89, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(52, 199, 89, 0);
+  }
+}
+
+.phone.doneGlow {
+  animation: glowPulse 0.6s ease;
+}
+
+/* ===== Ring finish animation ===== */
+@keyframes ringFinish {
+  0% {
+    transform: rotate(-90deg) scale(1);
+  }
+  45% {
+    transform: rotate(-90deg) scale(1.02);
+  }
+  100% {
+    transform: rotate(-90deg) scale(1);
+  }
+}
+
+.ringSvg.finish {
+  animation: ringFinish 0.45s ease-out;
+}
+
+@keyframes ringGlow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(52, 199, 89, 0.22));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(52, 199, 89, 0.38));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgba(52, 199, 89, 0.22));
+  }
+}
+
+.ringFg.finishGlow {
+  animation: ringGlow 0.55s ease-out;
+}
+
+@media (max-width: 420px) {
+  .circle {
+    width: 135px;
+    height: 135px;
+  }
+  .timeText {
+    font-size: 64px;
+  }
+
+  .ringWrap {
+    width: 250px;
+    height: 250px;
+  }
+  .ringSvg {
+    width: 250px;
+    height: 250px;
+  }
+}

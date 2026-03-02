@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="website.css" />
+  </head>
+  <body>
+    <main class="phone" id="phone">
+      <header class="nav">
+        <div class="nav-left">Timer</div>
+
+        <div class="nav-right">
+          <span id="statusText">Ready</span>
+          <button
+            id="settingsBtn"
+            class="iconBtn"
+            type="button"
+            aria-label="Open settings"
+          >
+            ⚙️
+          </button>
+        </div>
+      </header>
+
+      <section class="display">
+        <div class="ringWrap" aria-label="Timer progress">
+          <svg class="ringSvg" viewBox="0 0 120 120">
+            <circle class="ringBg" cx="60" cy="60" r="52"></circle>
+            <circle class="ringFg" cx="60" cy="60" r="52"></circle>
+          </svg>
+
+          <div class="ringContent">
+            <div class="timeText" id="timeText">25:00</div>
+            <div class="modePill" id="modeText">Focus</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="modes">
+        <button class="mode-btn active" data-mode="focus">Focus</button>
+        <button class="mode-btn" data-mode="short">Short</button>
+        <button class="mode-btn" data-mode="long">Long</button>
+      </section>
+
+      <section class="controls">
+        <button id="resetBtn" class="circle secondary" type="button">
+          <span class="circle-label">Reset</span>
+        </button>
+
+        <button id="startBtn" class="circle primary" type="button">
+          <span class="circle-label">Start</span>
+        </button>
+      </section>
+
+      <section class="bottom">
+        <div class="session">
+          <div class="session-label">Sessions</div>
+          <div class="session-value" id="sessionCount">0</div>
+        </div>
+      </section>
+
+      <!-- SETTINGS SHEET -->
+      <div id="sheetOverlay" class="sheetOverlay" hidden></div>
+
+      <section id="sheet" class="sheet" hidden aria-label="Settings panel">
+        <div class="sheetHandle"></div>
+
+        <div class="sheetHeader">
+          <div class="sheetTitle">Settings</div>
+          <button
+            id="closeSheetBtn"
+            class="iconBtn"
+            type="button"
+            aria-label="Close settings"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="sheetBody">
+          <div class="row">
+            <label for="focusInput">Focus (min)</label>
+            <input id="focusInput" type="number" min="1" max="180" />
+          </div>
+
+          <div class="row">
+            <label for="shortInput">Short Break (min)</label>
+            <input id="shortInput" type="number" min="1" max="60" />
+          </div>
+
+          <div class="row">
+            <label for="longInput">Long Break (min)</label>
+            <input id="longInput" type="number" min="1" max="120" />
+          </div>
+
+          <div class="row switchRow">
+            <label for="autoStartToggle">Auto-start next</label>
+            <input id="autoStartToggle" type="checkbox" />
+          </div>
+
+          <div class="row switchRow">
+            <label for="tickToggle">Tick sound</label>
+            <input id="tickToggle" type="checkbox" />
+          </div>
+
+          <button id="saveSettingsBtn" class="sheetSave" type="button">
+            Save
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
