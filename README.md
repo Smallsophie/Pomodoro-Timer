@@ -8,7 +8,7 @@ This project demonstrates strong front-end fundamentals, UI design skills, and J
 
 ## Live Demo
 
-https://smallsophie.github.io/pomodoro-timer/
+https://smallsophie.github.io/Pomodoro-Timer/
 
 
 ---
